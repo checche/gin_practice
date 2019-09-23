@@ -1,7 +1,6 @@
 package models
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -14,7 +13,7 @@ type Todo struct {
 }
 
 //DBマイグレート
-func dbInit() {
+func DbInit() {
 	// gorm.Open(使用するDBの種類, ファイル名)
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
@@ -28,7 +27,7 @@ func dbInit() {
 }
 
 //追加
-func dbInsert(text string, status string) {
+func DbInsert(text string, status string) {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("データベース開けない(dbInsert)")
@@ -39,7 +38,7 @@ func dbInsert(text string, status string) {
 }
 
 //更新
-func dbUpdate(id int, text string, status string) {
+func DbUpdate(id int, text string, status string) {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("データベース開けない(dbUpdate)")
@@ -55,7 +54,7 @@ func dbUpdate(id int, text string, status string) {
 }
 
 // 削除
-func dbDelete(id int) {
+func DbDelete(id int) {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("データベース開けない(dbDelete)")
@@ -67,7 +66,7 @@ func dbDelete(id int) {
 }
 
 //全件取得
-func dbGetAll() []Todo {
+func DbGetAll() []Todo {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("データベース開けない(dbGetAll)")
@@ -78,7 +77,7 @@ func dbGetAll() []Todo {
 	return todos
 }
 
-func dbGetOne(id int) Todo {
+func DbGetOne(id int) Todo {
 	db, err := gorm.Open("sqlite3", "test.sqlite3")
 	if err != nil {
 		panic("データベース開けない(dbGetOne)")
